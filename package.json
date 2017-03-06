@@ -10,7 +10,8 @@
     "coverage": "covert test/index.js",
     "coverage-quiet": "covert test/index.js --quiet",
     "lint": "npm run eslint",
-    "eslint": "eslint *.js */*.js"
+    "eslint": "eslint *.js */*.js",
+    "ci": "npm run test"
   },
   "contributors": [
     {
@@ -30,6 +31,7 @@
   "dependencies": {},
   "devDependencies": {
     "covert": "^1.1.0",
+    "egg-ci": "^1.5.0",
     "eslint": "^3.2.2",
     "eslint-config-egg": "^3.2.0",
     "tape": "^4.6.0"
@@ -37,5 +39,8 @@
   "license": "MIT",
   "files": [
     "index.js"
-  ]
+  ],
+  "ci": {
+    "version": "4, 6, 7"
+  }
 }
