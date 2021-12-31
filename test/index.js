@@ -627,5 +627,10 @@ test('fix __proto__ copy', function (t) {
     '{}',
     'It should not copy __proto__'
   );
+  t.deepEqual(
+    ''.polluted,
+    undefined,
+    'It should not affect object prototype'
+  );
   t.end();
 });
