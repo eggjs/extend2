@@ -47,6 +47,8 @@ module.exports = function extend() {
 
     // Extend the base object
     for (name in options) {
+      if (name === '__proto__') continue;
+
       src = target[name];
       copy = options[name];
 
