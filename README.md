@@ -3,20 +3,15 @@
 Forked from [node-extend], the difference is overriding array as primitive when deep clone.
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Node.js CI](https://github.com/eggjs/extend2/actions/workflows/nodejs.yml/badge.svg)](https://github.com/eggjs/extend2/actions/workflows/nodejs.yml)
 [![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/extend2.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/extend2
-[travis-image]: https://img.shields.io/travis/eggjs/extend2.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/extend2
 [codecov-image]: https://codecov.io/gh/eggjs/extend2/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/eggjs/extend2
-[david-image]: https://img.shields.io/david/eggjs/extend2.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/extend2
 [snyk-image]: https://snyk.io/test/npm/extend2/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/extend2
 [download-image]: https://img.shields.io/npm/dm/extend2.svg?style=flat-square

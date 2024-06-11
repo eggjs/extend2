@@ -2,8 +2,11 @@
   "name": "extend2",
   "author": "popomore <sakura9515@gmail.com>",
   "version": "1.0.1",
+  "publishConfig": {
+    "tag": "latest-1"
+  },
   "description": "Port of jQuery.extend for node.js and the browser",
-  "main": "index",
+  "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm run tests-only && npm run coverage-quiet",
     "tests-only": "node test",
@@ -32,9 +35,5 @@
   "license": "MIT",
   "files": [
     "index.js"
-  ],
-  "ci": {
-    "type": "github",
-    "version": "6, 8, 10, 12, 14, 16"
-  }
+  ]
 }
