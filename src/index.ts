@@ -1,15 +1,13 @@
-'use strict';
+const hasOwn = Object.prototype.hasOwnProperty;
+const toStr = Object.prototype.toString;
 
-var hasOwn = Object.prototype.hasOwnProperty;
-var toStr = Object.prototype.toString;
-
-var isPlainObject = function isPlainObject(obj) {
+function isPlainObject(obj: unknown) {
   if (!obj || toStr.call(obj) !== '[object Object]') {
     return false;
   }
 
-  var hasOwnConstructor = hasOwn.call(obj, 'constructor');
-  var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
+  const hasOwnConstructor = hasOwn.call(obj, 'constructor');
+  const hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
   // Not own constructor property must be Object
   if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
     return false;
@@ -17,47 +15,52 @@ var isPlainObject = function isPlainObject(obj) {
 
   // Own properties are enumerated firstly, so to speed up,
   // if last one is own, then all properties are own.
-  var key;
-  for (key in obj) { /**/ }
+  let key: string | undefined;
+  for (key in obj) {
+    /**/
+  }
 
   return typeof key === 'undefined' || hasOwn.call(obj, key);
-};
+}
 
-module.exports = function extend() {
-  var options, name, src, copy, copyIsArray, clone;
-  var target = arguments[0];
-  var i = 1;
-  var length = arguments.length;
-  var deep = false;
+export function extend<T = Record<string, any>>(deepOrTarget?: unknown, ...objects: unknown[]): T {
+  // extend(deep, target, obj1, obj2, ...)
+  // extend(target, obj1, obj2, ...)
+  let target = deepOrTarget as any;
+  let i = 0;
+  const length = objects.length;
+  let deep = false;
 
   // Handle a deep copy situation
   if (typeof target === 'boolean') {
+    // extend(deep, target, obj1, obj2, ...)
     deep = target;
-    target = arguments[1] || {};
+    target = objects[0] || {};
     // skip the boolean and the target
-    i = 2;
+    i = 1;
   } else if ((typeof target !== 'object' && typeof target !== 'function') || target == null) {
+    // extend(null, obj1, obj2, ...)
     target = {};
   }
 
   for (; i < length; ++i) {
-    options = arguments[i];
+    const options = objects[i] as any;
     // Only deal with non-null/undefined values
-    if (options == null) continue;
+    if (options === null || options === undefined) continue;
 
     // Extend the base object
-    for (name in options) {
+    for (const name in options) {
       if (name === '__proto__') continue;
 
-      src = target[name];
-      copy = options[name];
+      const src = target[name];
+      const copy = options[name];
 
       // Prevent never-ending loop
       if (target === copy) continue;
 
       // Recurse if we're merging plain objects
       if (deep && copy && isPlainObject(copy)) {
-        clone = src && isPlainObject(src) ? src : {};
+        const clone = src && isPlainObject(src) ? src : {};
         // Never move original objects, clone them
         target[name] = extend(deep, clone, copy);
 
@@ -69,5 +72,7 @@ module.exports = function extend() {
   }
 
   // Return the modified object
-  return target;
-};
+  return target as T;
+}
+
+export default extend;

@@ -2,19 +2,20 @@
   "name": "extend2",
   "author": "popomore <sakura9515@gmail.com>",
   "version": "1.0.1",
-  "publishConfig": {
-    "tag": "latest-1"
+  "engines": {
+    "node": ">=18.7.0"
   },
-  "description": "Port of jQuery.extend for node.js and the browser",
-  "main": "index.js",
+  "publishConfig": {
+    "tag": "latest"
+  },
+  "description": "Port of jQuery.extend for Node.js",
   "scripts": {
-    "test": "npm run lint && npm run tests-only && npm run coverage-quiet",
-    "tests-only": "node test",
-    "coverage": "covert test/index.js",
-    "coverage-quiet": "covert test/index.js --quiet",
-    "lint": "npm run eslint",
-    "eslint": "eslint *.js */*.js",
-    "ci": "npm run test"
+    "lint": "eslint .",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "ci": "npm run lint && egg-bin cov && npm run prepublishOnly",
+    "contributor": "git-contributor",
+    "prepublishOnly": "tshy && tshy-after"
   },
   "keywords": [
     "extend",
@@ -25,15 +26,47 @@
     "type": "git",
     "url": "https://github.com/eggjs/extend2.git"
   },
-  "dependencies": {},
   "devDependencies": {
-    "covert": "^1.1.0",
-    "eslint": "^3.2.2",
-    "eslint-config-egg": "^3.2.0",
-    "tape": "^4.6.0"
+    "@eggjs/tsconfig": "1",
+    "@types/mocha": "10",
+    "@types/node": "20",
+    "c8": "^10.0.0",
+    "egg-bin": "6",
+    "eslint": "8",
+    "eslint-config-egg": "13",
+    "git-contributor": "2",
+    "tape": "^5.7.5",
+    "tshy": "^1.15.1",
+    "tshy-after": "^1.0.0",
+    "typescript": "^5.4.5"
   },
   "license": "MIT",
   "files": [
-    "index.js"
-  ]
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "source": "./src/index.ts",
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "source": "./src/index.ts",
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts"
 }

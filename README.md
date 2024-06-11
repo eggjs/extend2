@@ -19,8 +19,8 @@ Forked from [node-extend], the difference is overriding array as primitive when 
 
 ## Usage
 
-```js
-const extend = require('extend2');
+```ts
+import { extend } from 'extend2';
 
 // for deep clone
 extend(true, {}, object1, objectN);
@@ -28,7 +28,7 @@ extend(true, {}, object1, objectN);
 
 ## License
 
-`node-extend` is licensed under the [MIT License][mit-license-url].
+`extend2` is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
@@ -36,7 +36,6 @@ All credit to the jQuery authors for perfecting this amazing utility.
 
 Ported to Node.js by [Stefan Thomas][github-justmoon] with contributions by [Jonathan Buchanan][github-insin] and [Jordan Harband][github-ljharb].
 
-[mit-license-url]: http://opensource.org/licenses/MIT
 [github-justmoon]: https://github.com/justmoon
 [github-insin]: https://github.com/insin
 [github-ljharb]: https://github.com/ljharb
